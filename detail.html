@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="阅读一份生前心愿、纪念故事与安葬地点偏好。时光留痕展示原型。">
+  <meta name="theme-color" content="#f6f3ec">
+  <title>纪念详情 · 时光留痕</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232b332e'/%3E%3Cg fill='none' stroke='%23e8ede3' stroke-width='1.3'%3E%3Ccircle cx='16' cy='16' r='9.5'/%3E%3Ccircle cx='16' cy='16' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%23e8ede3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="detail">
+  <header class="site-nav" id="siteNav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="时光留痕首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.1" opacity=".3"/>
+          <path d="M16 4a12 12 0 0 1 11.2 7.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M16 9.2a6.8 6.8 0 0 1 6.3 4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".72"/>
+          <circle cx="16" cy="16" r="1.7" fill="currentColor"/>
+        </svg>
+        <span class="brand-text">
+          <strong>时光留痕</strong>
+          <small>SHIGUANG LIUHEN</small>
+        </span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="index.html" data-nav="home">首页</a>
+        <a href="wishes.html" data-nav="wishes">心愿档案</a>
+        <a href="submit.html" class="btn btn-primary btn-sm" data-nav="submit">登记心愿</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="展开导航" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <nav class="breadcrumb" id="breadcrumb" aria-label="面包屑导航">
+        <a href="index.html">首页</a>
+        <span class="sep" aria-hidden="true"></span>
+        <a href="wishes.html">心愿档案</a>
+        <span class="sep" aria-hidden="true"></span>
+        <span>纪念详情</span>
+      </nav>
+
+      <article class="detail" id="detailArticle">
+        <header class="detail-head">
+          <div class="detail-eyebrow">
+            <span class="tag">正在读取</span>
+            <span class="vis-badge">—</span>
+          </div>
+          <h1>正在打开这份心愿…</h1>
+          <p class="detail-lede">如果页面长时间停留在这里，请返回心愿档案重新选择。</p>
+        </header>
+      </article>
+
+      <div class="empty-state" id="notFound" hidden>
+        <svg class="empty-art" viewBox="0 0 84 84" fill="none" aria-hidden="true">
+          <rect x="14" y="10" width="50" height="62" rx="4" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M25 25h28M25 35h28M25 45h18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
+          <circle cx="60" cy="60" r="12" fill="#f6f3ec" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M56 60h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <h2>没有找到这份心愿</h2>
+        <p>它可能已被删除，或者链接不完整。回到心愿档案，看看还在的那些故事。</p>
+        <a class="btn btn-primary" href="wishes.html">返回心愿档案</a>
+      </div>
+
+      <section class="related" id="relatedSection" hidden>
+        <div class="related-head">
+          <h2>还可以读一读</h2>
+          <a href="wishes.html">全部档案</a>
+        </div>
+        <div class="related-grid" id="relatedGrid"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer no-print">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.1" opacity=".3"/>
+            <path d="M16 4a12 12 0 0 1 11.2 7.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M16 9.2a6.8 6.8 0 0 1 6.3 4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".72"/>
+            <circle cx="16" cy="16" r="1.7" fill="currentColor"/>
+          </svg>
+          <span class="brand-text">
+            <strong>时光留痕</strong>
+            <small>SHIGUANG LIUHEN</small>
+          </span>
+        </a>
+        <p>提前留下身后心愿、安葬地点偏好与个人故事，让告别少一点仓促，让记忆有处安放。</p>
+      </div>
+      <nav class="footer-nav" aria-label="页脚导航">
+        <div>
+          <h4>平台</h4>
+          <a href="index.html">首页</a>
+          <a href="submit.html">登记心愿</a>
+          <a href="wishes.html">心愿档案</a>
+        </div>
+        <div>
+          <h4>说明</h4>
+          <a href="index.html#about">关于原型</a>
+          <a href="index.html#about">隐私与数据</a>
+          <a href="wishes.html">数据管理</a>
+        </div>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span data-year></span> 时光留痕 · 华为开发者大赛参赛作品</span>
+      <span>展示原型 · 不提供真实殡葬服务与交易</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/detail.js"></script>
+</body>
+</html>

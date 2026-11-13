@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="浏览时光留痕中已经登记的心愿与纪念故事，支持搜索、筛选、收藏、编辑与本地备份。">
+  <meta name="theme-color" content="#f6f3ec">
+  <title>心愿档案 · 时光留痕</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232b332e'/%3E%3Cg fill='none' stroke='%23e8ede3' stroke-width='1.3'%3E%3Ccircle cx='16' cy='16' r='9.5'/%3E%3Ccircle cx='16' cy='16' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%23e8ede3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="wishes">
+  <header class="site-nav" id="siteNav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="时光留痕首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.1" opacity=".3"/>
+          <path d="M16 4a12 12 0 0 1 11.2 7.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M16 9.2a6.8 6.8 0 0 1 6.3 4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".72"/>
+          <circle cx="16" cy="16" r="1.7" fill="currentColor"/>
+        </svg>
+        <span class="brand-text">
+          <strong>时光留痕</strong>
+          <small>SHIGUANG LIUHEN</small>
+        </span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="index.html" data-nav="home">首页</a>
+        <a href="wishes.html" data-nav="wishes">心愿档案</a>
+        <a href="submit.html" class="btn btn-primary btn-sm" data-nav="submit">登记心愿</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="展开导航" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container page-head list-head">
+      <div>
+        <a class="back-link" href="index.html">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H5M9 5l-5 5 5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          返回首页
+        </a>
+        <p class="eyebrow">心愿档案</p>
+        <h1>被认真写下的心愿。</h1>
+        <p class="page-lead">这里保存着每一份已经登记的托付。可以搜索、筛选，也可以随时修改或删除。所有内容只属于这台设备。</p>
+      </div>
+      <div class="list-head-actions">
+        <a class="btn btn-primary" href="submit.html">
+          登记心愿
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button class="btn btn-ghost" type="button" id="openData">数据管理</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="stats-inline" aria-label="档案统计">
+        <span>共 <strong id="statTotal">0</strong> 份心愿</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>公开 <strong id="statPublic">0</strong> 份</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>已收藏 <strong id="statFavorite">0</strong> 份</span>
+      </div>
+
+      <div class="toolbar">
+        <label class="search" for="searchInput">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M13.2 13.2 17 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <input type="search" id="searchInput" placeholder="搜索标题、故事或署名" autocomplete="off" aria-label="搜索心愿">
+        </label>
+        <div class="filters">
+          <label class="sr-only" for="categoryFilter">按心愿类型筛选</label>
+          <select class="select" id="categoryFilter">
+            <option value="all">全部类型</option>
+            <option value="安葬心愿">安葬心愿</option>
+            <option value="身后事务">身后事务</option>
+            <option value="纪念方式">纪念方式</option>
+            <option value="想说的话">想说的话</option>
+          </select>
+          <label class="sr-only" for="visibilityFilter">按可见范围筛选</label>
+          <select class="select" id="visibilityFilter">
+            <option value="all">全部范围</option>
+            <option value="public">公开展示</option>
+            <option value="family">家人可见</option>
+            <option value="private">仅自己可见</option>
+          </select>
+          <label class="sr-only" for="sortFilter">排序方式</label>
+          <select class="select" id="sortFilter">
+            <option value="new">最近登记</option>
+            <option value="old">最早登记</option>
+            <option value="title">标题顺序</option>
+          </select>
+          <button class="filter-fav" type="button" id="favoriteFilter" aria-pressed="false">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.6l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L2.8 7.9l5-.7L10 2.6Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            只看收藏
+          </button>
+        </div>
+      </div>
+
+      <div class="result-bar">
+        <span id="resultText">正在读取档案…</span>
+        <button type="button" id="clearFilters" hidden>清除筛选</button>
+      </div>
+
+      <div class="wish-list" id="wishList" aria-live="polite"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <svg class="empty-art" viewBox="0 0 84 84" fill="none" aria-hidden="true">
+          <rect x="14" y="10" width="50" height="62" rx="4" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M25 25h28M25 35h28M25 45h18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
+          <circle cx="60" cy="60" r="12" fill="#f6f3ec" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M56 60h8M60 56v8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <h2 id="emptyTitle">还没有符合条件的心愿</h2>
+        <p id="emptyText">换一个关键词，或者清除筛选后再看看。也可以先写下一份自己的心愿。</p>
+        <a class="btn btn-primary" href="submit.html">登记第一份心愿</a>
+      </div>
+
+      <details class="data-panel" id="dataPanel">
+        <summary>数据管理 · 仅在本机</summary>
+        <div class="data-body">
+          <button class="btn btn-quiet" type="button" id="exportBtn">导出 JSON 备份</button>
+          <label class="btn btn-quiet" for="importFile" role="button" tabindex="0">导入备份</label>
+          <input type="file" id="importFile" accept="application/json,.json" hidden>
+          <button class="btn btn-quiet" type="button" id="resetBtn">恢复示例数据</button>
+          <button class="btn btn-quiet danger" type="button" id="clearBtn">清空全部数据</button>
+          <p class="data-note">备份文件包含全部心愿内容，请自行妥善保管。导入时按登记编号合并，不会覆盖你不认识的记录。清空后无法恢复，请先导出备份。</p>
+        </div>
+      </details>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.1" opacity=".3"/>
+            <path d="M16 4a12 12 0 0 1 11.2 7.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M16 9.2a6.8 6.8 0 0 1 6.3 4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".72"/>
+            <circle cx="16" cy="16" r="1.7" fill="currentColor"/>
+          </svg>
+          <span class="brand-text">
+            <strong>时光留痕</strong>
+            <small>SHIGUANG LIUHEN</small>
+          </span>
+        </a>
+        <p>提前留下身后心愿、安葬地点偏好与个人故事，让告别少一点仓促，让记忆有处安放。</p>
+      </div>
+      <nav class="footer-nav" aria-label="页脚导航">
+        <div>
+          <h4>平台</h4>
+          <a href="index.html">首页</a>
+          <a href="submit.html">登记心愿</a>
+          <a href="wishes.html">心愿档案</a>
+        </div>
+        <div>
+          <h4>说明</h4>
+          <a href="index.html#about">关于原型</a>
+          <a href="index.html#about">隐私与数据</a>
+          <a href="wishes.html">数据管理</a>
+        </div>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span data-year></span> 时光留痕 · 华为开发者大赛参赛作品</span>
+      <span>展示原型 · 不提供真实殡葬服务与交易</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/wishes.js"></script>
+</body>
+</html>
