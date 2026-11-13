@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="在时光留痕登记一份生前心愿：写下你的故事、身后心愿与安葬地点偏好，并选择可见范围。">
+  <meta name="theme-color" content="#f6f3ec">
+  <title>登记心愿 · 时光留痕</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232b332e'/%3E%3Cg fill='none' stroke='%23e8ede3' stroke-width='1.3'%3E%3Ccircle cx='16' cy='16' r='9.5'/%3E%3Ccircle cx='16' cy='16' r='5'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%23e8ede3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="submit">
+  <header class="site-nav" id="siteNav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="时光留痕首页">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.1" opacity=".3"/>
+          <path d="M16 4a12 12 0 0 1 11.2 7.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M16 9.2a6.8 6.8 0 0 1 6.3 4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".72"/>
+          <circle cx="16" cy="16" r="1.7" fill="currentColor"/>
+        </svg>
+        <span class="brand-text">
+          <strong>时光留痕</strong>
+          <small>SHIGUANG LIUHEN</small>
+        </span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="index.html" data-nav="home">首页</a>
+        <a href="wishes.html" data-nav="wishes">心愿档案</a>
+        <a href="submit.html" class="btn btn-primary btn-sm" data-nav="submit">登记心愿</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="展开导航" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container narrow page-head">
+      <a class="back-link" href="wishes.html">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H5M9 5l-5 5 5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        返回心愿档案
+      </a>
+      <p class="eyebrow">登记心愿</p>
+      <h1 id="formHeading">把想留下的，慢慢写下来。</h1>
+      <p class="page-lead" id="formLead">不必一次写完。你可以先存为草稿，等想清楚了再回来。所有内容只保存在当前浏览器里。</p>
+    </div>
+
+    <div class="container form-layout">
+      <aside class="form-aside">
+        <ol class="step-rail" id="stepRail">
+          <li class="rail-item is-active" data-rail="1">
+            <span class="rail-num">01</span>
+            <div>
+              <strong>关于你</strong>
+              <small>署名与身份</small>
+            </div>
+          </li>
+          <li class="rail-item" data-rail="2">
+            <span class="rail-num">02</span>
+            <div>
+              <strong>心愿与故事</strong>
+              <small>想留下的话</small>
+            </div>
+          </li>
+          <li class="rail-item" data-rail="3">
+            <span class="rail-num">03</span>
+            <div>
+              <strong>偏好与可见范围</strong>
+              <small>安葬地点与隐私</small>
+            </div>
+          </li>
+        </ol>
+        <p class="aside-note">本页面为展示原型，提交不会上传到任何服务器。正式产品应加入账号体系、加密存储与家属授权机制。</p>
+      </aside>
+
+      <div class="form-panel">
+        <div class="draft-bar" id="draftBar">
+          <span id="draftStatus">草稿会随时保存在本机</span>
+          <span>
+            <button class="draft-save" id="draftClear" type="button" hidden>清空草稿</button>
+            <button class="draft-save" id="draftSave" type="button">立即暂存</button>
+          </span>
+        </div>
+
+        <form id="wishForm" novalidate>
+          <fieldset class="form-step is-active" data-step="1">
+            <legend class="sr-only">第一步：关于你</legend>
+            <h2 class="step-title">先认识一下你。</h2>
+            <p class="step-sub">署名会出现在心愿档案与纪念详情页。之后可以随时回来修改。</p>
+            <div class="form-grid">
+              <div class="field" data-field="authorName">
+                <label for="authorName">你的称呼 <span class="req">必填</span></label>
+                <input class="input" id="authorName" name="authorName" type="text" maxlength="24" autocomplete="off" placeholder="例如：林见秋">
+                <p class="hint">可以使用真实姓名，也可以使用你习惯的称呼。</p>
+                <p class="error" data-error></p>
+              </div>
+              <div class="field" data-field="relation">
+                <label for="relation">登记人与你的关系</label>
+                <select class="select" id="relation" name="relation">
+                  <option value="本人">本人登记</option>
+                  <option value="配偶">配偶代填</option>
+                  <option value="子女">子代填</option>
+                  <option value="父母">父母代填</option>
+                  <option value="亲友">亲友代填</option>
+                  <option value="其他">其他</option>
+                </select>
+                <p class="hint">当前原型以本人登记为主，也支持家人代为整理。</p>
+              </div>
+            </div>
+            <div class="form-actions">
+              <span class="spacer"></span>
+              <button class="btn btn-primary" type="button" data-next="2">
+                继续
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step="2">
+            <legend class="sr-only">第二步：心愿与故事</legend>
+            <h2 class="step-title">想被记住的，是什么？</h2>
+            <p class="step-sub">不用追求完整的生平。一段具体的记忆、一句想说的话，就已经足够。</p>
+            <div class="field full" data-field="title">
+              <label for="title">这份心愿的标题 <span class="req">必填</span></label>
+              <input class="input" id="title" name="title" type="text" maxlength="60" autocomplete="off" placeholder="例如：把最后一段路，交给海风">
+              <p class="hint">2 至 60 个字。它会是档案列表与详情页上的第一行。</p>
+              <p class="error" data-error></p>
+            </div>
+            <div class="field full" data-field="category">
+              <span class="field-label">心愿类型</span>
+              <div class="chip-group" role="radiogroup" aria-label="心愿类型">
+                <label class="chip">
+                  <input type="radio" name="category" value="安葬心愿" checked>
+                  <span>安葬心愿</span>
+                </label>
+                <label class="chip">
+                  <input type="radio" name="category" value="身后事务">
+                  <span>身后事务</span>
+                </label>
+                <label class="chip">
+                  <input type="radio" name="category" value="纪念方式">
+                  <span>纪念方式</span>
+                </label>
+                <label class="chip">
+                  <input type="radio" name="category" value="想说的话">
+                  <span>想说的话</span>
+                </label>
+              </div>
+            </div>
+            <div class="field full" data-field="story">
+              <label for="story">想留下的故事 <span class="req">必填</span></label>
+              <textarea class="textarea" id="story" name="story" maxlength="2000" placeholder="写下你希望被记住的经历、习惯、画面，或一段想讲给家人的往事。"></textarea>
+              <div class="counter"><span id="storyCount">0</span> / 2000</div>
+              <p class="hint">至少 30 个字。可以是几件小事，不必按时间顺序。</p>
+              <p class="error" data-error></p>
+            </div>
+            <div class="field full" data-field="wish">
+              <label for="wish">如果只能留下一句话 <span class="req">必填</span></label>
+              <textarea class="textarea" id="wish" name="wish" maxlength="300" style="min-height:104px" placeholder="例如：不要冗长的仪式，把我撒在海里。你们好好吃饭，好好过日子。"></textarea>
+              <div class="counter"><span id="wishCount">0</span> / 300</div>
+              <p class="hint">这句话会作为纪念页的开头，被最先读到。</p>
+              <p class="error" data-error></p>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-ghost" type="button" data-prev="1">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" style="transform:rotate(180deg)"><path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                上一步
+              </button>
+              <span class="spacer"></span>
+              <button class="btn btn-primary" type="button" data-next="3">
+                继续
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-step" data-step="3">
+            <legend class="sr-only">第三步：偏好与可见范围</legend>
+            <h2 class="step-title">把选择权，交给自己。</h2>
+            <p class="step-sub">安葬偏好不是承诺，只是一条留给家人的线索。所有选项之后都可以修改。</p>
+            <div class="form-grid">
+              <div class="field" data-field="burialRegion">
+                <label for="burialRegion">安葬地点偏好</label>
+                <input class="input" id="burialRegion" name="burialRegion" type="text" maxlength="80" autocomplete="off" placeholder="例如：浙江舟山 · 嵊泗以东海域">
+                <p class="hint">城市、海域或具体地点都可以。</p>
+              </div>
+              <div class="field" data-field="burialType">
+                <label for="burialType">场所类型</label>
+                <select class="select" id="burialType" name="burialType">
+                  <option value="尚未决定">尚未决定</option>
+                  <option value="故乡故土">故乡故土</option>
+                  <option value="自然山海">自然山海</option>
+                  <option value="纪念林 / 树葬">纪念林 / 树葬</option>
+                  <option value="城市公墓">城市公墓</option>
+                  <option value="其他">其他</option>
+                </select>
+              </div>
+              <div class="field full" data-field="burialNote">
+                <label for="burialNote">补充说明</label>
+                <textarea class="textarea" id="burialNote" name="burialNote" maxlength="300" style="min-height:96px" placeholder="例如：不保留骨灰盒，不设墓碑。若当日风浪大，改期即可。"></textarea>
+                <p class="hint">可以写下不希望发生的事，或者希望家人留意的细节。</p>
+              </div>
+            </div>
+
+            <div class="field full" data-field="visibility">
+              <span class="field-label">谁可以看到这份心愿</span>
+              <div class="choice-group" role="radiogroup" aria-label="可见范围">
+                <label class="choice">
+                  <input type="radio" name="visibility" value="public">
+                  <span class="choice-body">
+                    <strong>公开展示</strong>
+                    <small>会出现在首页的精选心愿与公开档案中，适合愿意被阅读的故事。</small>
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="visibility" value="family">
+                  <span class="choice-body">
+                    <strong>家人可见</strong>
+                    <small>作为家庭内部的记录留存，标记为家人可见，不进入首页精选。</small>
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="visibility" value="private" checked>
+                  <span class="choice-body">
+                    <strong>仅自己可见</strong>
+                    <small>只作为私人记录。当前原型仍存于本机，正式产品应配合账号与加密。</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <label class="switch" for="anonymous">
+              <input type="checkbox" id="anonymous" name="anonymous">
+              <span class="switch-text">
+                <strong>匿名展示</strong>
+                <small>开启后，公开页面会以“一位不愿具名的登记人”代替你的署名，但档案中仍保留登记信息。</small>
+              </span>
+            </label>
+
+            <div class="field full" data-field="consent" style="margin-top:20px">
+              <label class="consent" for="consent">
+                <input type="checkbox" id="consent" name="consent">
+                <span>我了解这是华为开发者大赛的展示原型：内容只保存在当前浏览器，不会上传，也不代表任何真实殡葬服务或交易。</span>
+              </label>
+              <p class="error" data-error></p>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-ghost" type="button" data-prev="2">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" style="transform:rotate(180deg)"><path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                上一步
+              </button>
+              <span class="spacer"></span>
+              <button class="btn btn-primary" type="submit" id="submitBtn">保存这份心愿</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <section class="success-panel" id="successPanel" hidden aria-live="polite">
+          <div class="success-mark">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h2 id="successHeading">心愿已经留在这里。</h2>
+          <p id="successMessage">它只保存在你的浏览器中。你可以继续补充，也可以去档案里看看它。</p>
+          <div class="success-preview">
+            <span>已留存的心愿</span>
+            <strong id="successTitle"></strong>
+          </div>
+          <div class="success-actions">
+            <a class="btn btn-primary" id="successDetail" href="wishes.html">查看这份心愿</a>
+            <a class="btn btn-ghost" href="wishes.html">返回心愿档案</a>
+            <button class="btn btn-quiet" type="button" id="successAgain">再登记一份</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <p class="container form-foot-note">提交前请确认内容为自己或已获得授权的家人所写。请勿填写身份证号、住址门牌等敏感信息。</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.1" opacity=".3"/>
+            <path d="M16 4a12 12 0 0 1 11.2 7.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M16 9.2a6.8 6.8 0 0 1 6.3 4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".72"/>
+            <circle cx="16" cy="16" r="1.7" fill="currentColor"/>
+          </svg>
+          <span class="brand-text">
+            <strong>时光留痕</strong>
+            <small>SHIGUANG LIUHEN</small>
+          </span>
+        </a>
+        <p>提前留下身后心愿、安葬地点偏好与个人故事，让告别少一点仓促，让记忆有处安放。</p>
+      </div>
+      <nav class="footer-nav" aria-label="页脚导航">
+        <div>
+          <h4>平台</h4>
+          <a href="index.html">首页</a>
+          <a href="submit.html">登记心愿</a>
+          <a href="wishes.html">心愿档案</a>
+        </div>
+        <div>
+          <h4>说明</h4>
+          <a href="index.html#about">关于原型</a>
+          <a href="index.html#about">隐私与数据</a>
+          <a href="wishes.html">数据管理</a>
+        </div>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span data-year></span> 时光留痕 · 华为开发者大赛参赛作品</span>
+      <span>展示原型 · 不提供真实殡葬服务与交易</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/submit.js"></script>
+</body>
+</html>
